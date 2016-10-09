@@ -193,23 +193,39 @@ def kids_game(names):
     """
     results = []
     start_letters = {}
-    #create dictionary
+     
+    # create dictionary start_letters with first letter of word as key
+    # and list of words as a value
     for name in names:
         start_letters[name[0]] = start_letters.get(name[0], []) + [name]
-    #first letter of first name in list
+    
+    # first letter of first name in list
     letter = names[0][0]
+    
     while True:
         try:
+            # names that start with the letter
             name_choices = start_letters[letter]
+
+            # add the first name in name_choices to results
             results.append(name_choices[0])
+
+            # store the current letter as prev_letter
             prev_letter = letter
+            # assign letter to the last letter of the chosen name
             letter = name_choices[0][-1]
+
+            # remove the chosen name from its list of names
             name_choices.remove(name_choices[0])
 
+            #if the list of names is empty after removing the name, delete it
             if name_choices == []:
                 del start_letters[prev_letter]
+
+        # stop searching when last letter of name is not a key in start_letters
         except KeyError:
             break
+
     return results
 
 #####################################################################
