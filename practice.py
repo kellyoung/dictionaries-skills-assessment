@@ -94,16 +94,19 @@ def get_sum_zero_pairs(numbers):
         >>> sort_pairs( get_sum_zero_pairs([1, 3, -1, 1, 1, 0]) )
         [[-1, 1], [0, 0]]
     """
-    #[-1, 0, 1, 1, 3]
     zero_pairs = []
 
+    #creates a sorted list of unique values
     numbers = set(numbers)
     numbers = list(numbers)
     numbers.sort()
 
+    #go through each number in list numbers
     for index, number in enumerate(numbers):
+        #add to zero_pairs if zero is in numbers
         if number == 0:
             zero_pairs.append([0, 0])
+        #check if current number's opposite is in the list
         elif number * -1 in numbers:
             zero_pair = [number]
             pair_index = numbers.index(number * -1)
